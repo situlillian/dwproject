@@ -2,25 +2,23 @@ import React, { Component } from "react";
 
 class QueryDetail extends Component {
   render() {
-    let query = this.props.country
-      ? `
-           SELECT * WHERE {
-           ?x a dbo:Country.
-           ?x rdfs:label ${this.props.country}.
-           ?x rdfs:label ?n.
-
-           values ?hasPopulation { dbo:populationTotal dbp:populationCensus }
-           OPTIONAL { ?x ?hasPopulation ?p }
-           FILTER (isNumeric(?p))
-
-           FILTER (langMatches(lang(?n), "en"))
-           }
-            `
-      : "";
     return (
-      <div>
-        <h3>SPARQL Query</h3>
-        <code>{query}</code>
+      <div className="detailBox">
+        <h2>SPARQL Query</h2>
+        <code>
+          SELECT *<br />
+          WHERE &#123; <br />
+          ?x a dbo:Country.<br />
+          ?x rdfs:label <span className="queryResultText">{this.props.country}</span>.<br />
+          ?x rdfs:label ?n.<br />
+          <br />
+          values ?hasPopulation &#123;<br />
+          dbo:populationTotal dbp:populationCensus }<br />
+          OPTIONAL &#123; ?x ?hasPopulation ?p &#125;<br />
+          <br />
+          FILTER (isNumeric(?p))<br />
+          FILTER (langMatches(lang(?n), "en"))<br />&#125;
+        </code>
       </div>
     );
   }

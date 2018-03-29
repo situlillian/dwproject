@@ -3,7 +3,7 @@ import d3 from "d3";
 import topojson from "topojson";
 import Datamap from "datamaps";
 
-class DataMapContainer extends Component {
+class WorldMapContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,10 +28,10 @@ class DataMapContainer extends Component {
     let datamapcontainer = new Datamap({
       element: document.getElementById("datamapcontainer"),
       scope: "world",
-      responsive: false,
+      responsive: true,
       fills: {
         defaultFill: "#eceff1",
-        clicked: "#ccc"
+        clicked: "#F1E7B7"
       },
       data: { clickedCountries },
       done: function(datamap) {
@@ -59,7 +59,7 @@ class DataMapContainer extends Component {
         popupOnHover: true, // True to show the popup while hovering
         highlightOnHover: true,
         highlightFillColor: "#607d8b",
-        highlightBorderColor: "#000",
+        highlightBorderColor: "#000000",
         highlightBorderWidth: 1,
         highlightBorderOpacity: 1
       }
@@ -71,4 +71,4 @@ class DataMapContainer extends Component {
   }
 }
 
-export default DataMapContainer;
+export default WorldMapContainer;

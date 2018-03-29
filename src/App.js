@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PopulationDetail from "./components/PopulationDetail";
-import DataMapContainer from "./components/DataMapContainer";
+import USAPopulationDetail from "./components/USAPopulationDetail";
+import WorldMapContainer from "./components/WorldMapContainer";
+import USMapContainer from "./components/USMapContainer";
 import QueryDetail from "./components/QueryDetail";
 import "./App.css";
 import { SparqlClient, SPARQL } from "sparql-client-2";
@@ -34,6 +36,7 @@ class App extends Component {
           ?x a dbo:Country.
           ?x rdfs:label ${countryName}@en.
           ?x rdfs:label ?n.
+          ?x dbo:thumbnail ?t.
 
           values ?hasPopulation { dbo:populationTotal dbp:populationCensus }
           OPTIONAL { ?x ?hasPopulation ?p }
@@ -59,23 +62,37 @@ class App extends Component {
     );
   }
 
-  componentDidMount() {
-    // this.fetchPopulations("Czech Republic").then(response => console.log(`fetching`, Date.now()));
-  }
+  componentDidMount() {}
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Population by Country</h1>
+      <div className="App container">
+        <header className="header">
+          <h1 className="leftAlign">Population by Country</h1>
+          <p className="">To get started, click on a country to display population information.</p>
         </header>
-        <div>
-          <DataMapContainer onCountryClick={this.fetchPopulations} />
+        <div className="main">
+          <WorldMapContainer onCountryClick={this.fetchPopulations} />
         </div>
-        <div>
-          <p className="App-intro">To get started, click on a country to display population information.</p>
+        <div className="detail population">
           <PopulationDetail population={this.state.countryPopulation} country={this.state.country} />
+        </div>
+        <div className="detail query">
           <QueryDetail country={this.state.country} />
+        </div>
+        <div className="usaMap">
+          <USMapContainer />
+          <p className="">To get started, click on a state to display more information.</p>
+          <h1 className="rightAlign">Population by State</h1>
+        </div>
+        <div className="detail query2">
+          <QueryDetail />
+        </div>
+        <div className="detail population2">
+          <USAPopulationDetail />
+        </div>
+        <div className="footer">
+          <p>Lillian Situ</p>
         </div>
       </div>
     );

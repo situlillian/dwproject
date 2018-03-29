@@ -1,7 +1,14 @@
+/* font-family: 'Spectral', serif;
+font-family: 'Yeseva One', cursive;
+font-family: 'Merriweather', serif;
+font-family: 'Merriweather Sans', sans-serif; */
+
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  background-color: #fff;
+  font-family: "Merriweather Sans", sans-serif;
+  font-color: #607d8b;
+  text-align: center;
 }
 
 div {
@@ -12,8 +19,103 @@ svg {
   height: auto;
   width: auto;
   position: relative;
+  display: block;
+  margin: auto;
+}
+
+h1 {
+  font-family: "Yeseva One", cursive;
+  font-size: 320%;
+  color: #f2d653;
+  padding: 0 3em;
+}
+
+h2,
+h3,
+h4 {
+  font-family: "Merriweather", serif;
+  text-decoration: underline;
+}
+
+code {
+  font-family: monospace;
+  font-size: 130%;
+}
+.leftAlign {
+  text-align: left;
+}
+.rightAlign {
+  text-align: right;
+}
+.detail {
+  background-color: hsla(48, 85%, 62%, 0.13);
+  padding: 10% 12%;
+}
+
+.detailBox {
+  background-color: white;
+  border: 1px solid #607d8b;
+  min-height: 20em;
+  padding: 5%;
+  text-align: left;
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.queryResultText {
+  color: #f2d653;
+  font-weight: bold;
+}
+
+.header {
+  grid-area: header;
+}
+.main {
+  grid-area: main;
+}
+.population {
+  grid-area: population;
+}
+.query {
+  align-self: start;
+  grid-area: query;
+}
+.usaMap {
+  grid-area: usaMap;
+}
+.usapopulation2 {
+  grid-area: population;
+}
+.usaquery2 {
+  grid-area: query;
+  align-self: start;
+}
+.footer {
+  grid-area: footer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header"
+    "main main"
+    "population query"
+    "usaMap usaMap"
+    "query2 population2"
+    "footer footer";
 }
 
 #datamapcontainer {
   height: 50vh;
+  z-index: 100;
+  margin-bottom: -10em;
+  margin-top: -3em;
+}
+
+#usamapcontainer {
+  margin-top: -7em;
+  margin-bottom: -3em;
+  height: 20vh;
+  z-index: 100;
 }
