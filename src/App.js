@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import PopulationDetail from "./PopulationDetail";
+import PopulationDetail from "./components/PopulationDetail";
+import DataMapContainer from "./components/DataMapContainer";
+import QueryDetail from "./components/QueryDetail";
 import "./App.css";
 import { SparqlClient, SPARQL } from "sparql-client-2";
+
 const client = new SparqlClient("http://dbpedia.org/sparql").register({
   db: "http://dbpedia.org/resource/",
   dbo: "http://dbpedia.org/ontology/",
@@ -15,11 +17,10 @@ class App extends Component {
 
     this.state = {
       countryPopulation: "",
-      country: "",
-      text: ""
+      country: ""
     };
 
-    this.fetchCityLeader = this.fetchPopulations.bind(this);
+    this.fetchPopulations = this.fetchPopulations.bind(this);
   }
 
   fetchPopulations(countryName) {
@@ -42,30 +43,40 @@ class App extends Component {
           }
            `
         )
+        // make sure we have population
         .execute()
         // Get the item we want.
         .then(response => {
           console.log(response, Date.now());
-          // Promise.resolve(response.results.bindings[0].value);
-          this.setState({ countryPopulation: response.results.bindings[0].p.value });
-          this.setState({ country: response.results.bindings[0].n.value });
+          let res = response.results.bindings[0];
+          this.setState({ countryPopulation: res.p.value, country: res.n.value });
+          this.setState({ text: this.state.country ? this.state.query : "" });
         })
+        .catch(err => {
+          this.setState({ countryPopulation: `Unable to retrieve`, country: `Unable to retreive` });
+        })
+      // let the user know we could not find the population
     );
   }
 
   componentDidMount() {
-    this.fetchPopulations("Austria").then(response => console.log(`fetching`, Date.now()));
+    // this.fetchPopulations("Czech Republic").then(response => console.log(`fetching`, Date.now()));
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Population by Country</h1>
         </header>
-        <p className="App-intro">To get started, click on a country to display population information.</p>
-        <PopulationDetail population={this.state.countryPopulation} country={this.state.country} />
+        <div>
+          <DataMapContainer onCountryClick={this.fetchPopulations} />
+        </div>
+        <div>
+          <p className="App-intro">To get started, click on a country to display population information.</p>
+          <PopulationDetail population={this.state.countryPopulation} country={this.state.country} />
+          <QueryDetail country={this.state.country} />
+        </div>
       </div>
     );
   }

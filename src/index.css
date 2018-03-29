@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+div {
+  box-sizing: border-box;
+}
+
+svg {
+  height: auto;
+  width: auto;
+  position: relative;
+}
+
+#datamapcontainer {
+  height: 50vh;
+}
