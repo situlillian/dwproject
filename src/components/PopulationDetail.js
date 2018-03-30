@@ -5,12 +5,19 @@ class PopulationDetail extends Component {
   render() {
     let country = this.props.country;
     let headerText = country.name ? country.name : "Country";
+    const option = {
+      justification: "C",
+      commafy: true
+    };
 
     return (
-      <div className="detailBox">
+      <div className="detailBox col-md-4">
         <h2 className="">{headerText}</h2>
         <p>
-          Population: <span className="queryResultText">{country.population}</span>
+          Population:{" "}
+          <span className="queryResultText">
+            <NumericLabel>{country.population}</NumericLabel>
+          </span>
         </p>
         <p>Flag:</p>
         <img className="flag" src={country.flag} />

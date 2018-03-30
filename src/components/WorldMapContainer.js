@@ -6,7 +6,9 @@ import Datamap from "datamaps";
 class WorldMapContainer extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      data: {}
+    };
 
     this.loadmap = this.loadmap.bind(this);
   }
@@ -20,8 +22,8 @@ class WorldMapContainer extends Component {
 
   loadmap() {
     const onCountryClick = this.props.onCountryClick;
-    let clickedCountries = this.state.data;
     let countryPopulation = this.props.population;
+
     let datamapcontainer = new Datamap({
       element: document.getElementById("datamapcontainer"),
       scope: "world",
@@ -30,7 +32,6 @@ class WorldMapContainer extends Component {
         defaultFill: "#eceff1",
         clicked: "#F1E7B7"
       },
-      data: { clickedCountries },
       done: function(datamap) {
         datamap.svg.selectAll(".datamaps-subunit").on("click", function(geography) {
           let country = geography.properties.name;
@@ -67,7 +68,11 @@ class WorldMapContainer extends Component {
   }
 
   render() {
-    return <div id="datamapcontainer" />;
+    return (
+      <div className="row justify-content-center">
+        <div className="col-9" id="datamapcontainer" />
+      </div>
+    );
   }
 }
 

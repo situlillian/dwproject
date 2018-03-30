@@ -3,34 +3,6 @@ font-family: 'Yeseva One', cursive;
 font-family: 'Merriweather', serif;
 font-family: 'Merriweather Sans', sans-serif; */
 
-.popTotalHeader {
-  font-family: "Yeseva One", cursive;
-  font-weight: bold;
-  font-size: 1em;
-  color: #f2d653;
-  border: 1px solid black;
-  padding: 0.5%;
-  display: inline-block;
-  width: 15em;
-}
-
-.instructions {
-  display: inline-block;
-  padding: 1%;
-}
-
-.detailsScrollDown {
-  font-size: 0.7em;
-  text-transform: uppercase;
-  padding: 0.3%;
-  font-weight: bold;
-  z-index: 2000;
-}
-
-.flag {
-  width: 200px;
-}
-
 body {
   margin: 0;
   background-color: #fff;
@@ -52,40 +24,55 @@ svg {
 }
 
 h1 {
-  font-family: "Yeseva One", cursive;
-  font-size: 320%;
-  color: #f2d653;
-  padding: 0 3em;
 }
 
 h2,
 h3,
 h4 {
   font-family: "Merriweather", serif;
-  text-transform: uppercase;
   border-bottom: 1px solid grey;
 }
 
 code {
   font-family: monospace;
-  font-size: 130%;
+  font-size: 120%;
 }
+
+.header {
+  height: 100vh;
+  background-color: #fdf8e7;
+}
+
+.bgMap {
+  width: inherit;
+  margin-right: 3em;
+}
+.instructions {
+}
+
+.logo {
+  height: 4em;
+  margin-right: 1em;
+}
+
 .leftAlign {
   text-align: left;
 }
 .rightAlign {
   text-align: right;
 }
+
 .detail {
-  background-color: hsla(48, 85%, 62%, 0.13);
-  padding: 10% 12%;
+  background-color: #fdf8e7;
+  padding: 2em;
 }
 
 .detailBox {
   background-color: white;
   border: 1px solid #607d8b;
   min-height: 20em;
-  padding: 5%;
+  padding: 2em;
+  margin: 2em;
   text-align: left;
   box-shadow: 1px 1px 1px 1px #ccc;
 }
@@ -95,56 +82,20 @@ code {
   font-weight: bold;
 }
 
-.header {
-  grid-area: header;
-}
-.main {
-  grid-area: main;
-}
-.population {
-  grid-area: population;
-}
-.query {
-  align-self: start;
-  grid-area: query;
-}
-.usaMap {
-  grid-area: usaMap;
-}
-.usapopulation2 {
-  grid-area: population;
-}
-.usaquery2 {
-  grid-area: query;
-  align-self: start;
-}
-.footer {
-  grid-area: footer;
+.detailsScrollDown {
+  font-size: 2em;
+  text-transform: uppercase;
+  padding: 1%;
+  z-index: 2000;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "header header"
-    "main main"
-    "population query"
-    "usaMap usaMap"
-    "query2 population2"
-    "footer footer";
+.flag {
+  height: 100px;
 }
 
 #datamapcontainer {
-  height: 40vh;
+  height: 30vh;
   z-index: 100;
   margin-bottom: -10em;
-  margin-top: -3em;
-}
-
-#usamapcontainer {
   margin-top: -10em;
-  margin-bottom: -3em;
-  height: 20vh;
-  z-index: 100;
 }

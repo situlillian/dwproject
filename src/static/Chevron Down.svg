@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="126px" height="65px" viewBox="0 0 126 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Map-Image-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" fill="#686868" fill-rule="nonzero">
+            <path d="M122.874885,64.0312763 C123.46997,64.6259381 124.434792,64.6259381 125.029877,64.0312763 C125.624962,63.4366141 125.624962,62.4724768 125.029877,61.8778146 L64.0774961,0.968723736 C63.4824113,0.374061886 62.5175887,0.374061886 61.9225039,0.968723736 L0.970122971,61.8778146 C0.375038476,62.4724768 0.375038476,63.4366141 0.970122971,64.0312763 C1.56520777,64.6259381 2.53003032,64.6259381 3.12511512,64.0312763 L63,4.17727516 L122.874885,64.0312763 Z" id="Shape" transform="translate(63.000000, 32.500000) rotate(180.000000) translate(-63.000000, -32.500000) "></path>
+        </g>
+    </g>
+</svg>

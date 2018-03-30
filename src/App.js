@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import { SparqlClient, SPARQL } from "sparql-client-2";
 import NumericLabel from "react-pretty-numbers";
 import "./App.css";
-import PopulationDetail from "./components/PopulationDetail";
-import USAPopulationDetail from "./components/USAPopulationDetail";
 import WorldMapContainer from "./components/WorldMapContainer";
-import USMapContainer from "./components/USMapContainer";
+import PopulationDetail from "./components/PopulationDetail";
 import QueryDetail from "./components/QueryDetail";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const client = new SparqlClient("http://dbpedia.org/sparql").register({
   db: "http://dbpedia.org/resource/",
@@ -33,7 +33,7 @@ class App extends Component {
 
   handleScrollToElement(event) {
     const detailNode = ReactDOM.findDOMNode(this.refs.details);
-    window.scrollTo(0, detailNode.offsetTop);
+    window.scrollTo(20, detailNode.offsetTop);
   }
 
   fetchPopulations(countryName) {
@@ -71,7 +71,13 @@ class App extends Component {
           this.setState({ country: newCountry });
         })
         .catch(err => {
-          this.setState({ countryPopulation: `Unable to retrieve`, country: `${countryName}` });
+          let newCountry = this.state.country;
+          newCountry = {
+            name: countryName,
+            population: "Unable to retrieve from DBPedia",
+            flag: "Unable to retrieve from DBPedia"
+          };
+          this.setState({ country: newCountry });
         })
       // let the user know we could not find the population
     );
@@ -82,38 +88,18 @@ class App extends Component {
     let populationTotal = countryData.population ? countryData.population : "0000000000";
     // no counry population data yet
 
-    const option = {
-      justification: "C",
-      commafy: true
-    };
-    // prettify number
-
     return (
-      <div className="App container">
-        <header className="header">
-          <h1 className="leftAlign">Population by Country</h1>
-          <div>
-            <p className="instructions">To get started, click on a country to display population information. </p>
-            <button className="detailsScrollDown" onClick={this.handleScrollToElement}>
-              See Details
-            </button>
-          </div>
-          <div className="popTotalHeader">
-            <NumericLabel params={option}>{populationTotal}</NumericLabel>
-          </div>
-        </header>
+      <div className="App container-fluid">
+        <Header handleScrollToElement={this.handleScrollToElement} />
         <div className="main">
+          <p ref="details">To get started, click on a country to display population information.</p>
           <WorldMapContainer onCountryClick={this.fetchPopulations} country={countryData} />
         </div>
-        <div ref="details" className="detail population">
+        <div className="row justify-content-center detail">
           <PopulationDetail country={countryData} />
-        </div>
-        <div className="detail query">
           <QueryDetail country={countryData} />
         </div>
-        <div className="footer">
-          <p>Lillian Situ</p>
-        </div>
+        <Footer />
       </div>
     );
   }
