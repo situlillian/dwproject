@@ -26,7 +26,7 @@ const Header = ({ handleScrollToElement }) => {
             <img className="bgMap" src={map} />
           </div>
           <div className="col-12 align-self-end">
-            <img className="chevrondown" src={chevrondown} />
+            <img className="chevrondown" src={chevrondown} onClick={handleScrollToElement} />
           </div>
         </div>
       </div>

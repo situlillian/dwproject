@@ -2,18 +2,11 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { SparqlClient, SPARQL } from "sparql-client-2";
 import NumericLabel from "react-pretty-numbers";
-import "./App.css";
 import WorldMapContainer from "./components/WorldMapContainer";
 import PopulationDetail from "./components/PopulationDetail";
 import QueryDetail from "./components/QueryDetail";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-
-const client = new SparqlClient("http://dbpedia.org/sparql").register({
-  db: "http://dbpedia.org/resource/",
-  dbo: "http://dbpedia.org/ontology/",
-  dbp: "http://dbpedia.org/property/"
-});
 
 class App extends Component {
   constructor() {
@@ -24,7 +17,8 @@ class App extends Component {
         name: "",
         population: "",
         flag: ""
-      }
+      },
+      queryText: ""
     };
 
     this.fetchPopulations = this.fetchPopulations.bind(this);
@@ -34,33 +28,36 @@ class App extends Component {
   handleScrollToElement(event) {
     const detailNode = ReactDOM.findDOMNode(this.refs.details);
     window.scrollTo(20, detailNode.offsetTop);
-  }
+  } // need to animate for smooth scrolling
 
   fetchPopulations(countryName) {
+    const client = new SparqlClient("http://dbpedia.org/sparql").register({
+      db: "http://dbpedia.org/resource/",
+      dbo: "http://dbpedia.org/ontology/",
+      dbp: "http://dbpedia.org/property/"
+    });
+
+    let query = SPARQL`
+    SELECT *
+    WHERE {
+    ?x a dbo:Country.
+    ?x rdfs:label ${countryName}@en.
+    ?x rdfs:label ?n.
+    ?x dbo:thumbnail ?t.
+
+    values ?hasPopulation { dbo:populationTotal dbp:populationCensus }
+    OPTIONAL { ?x ?hasPopulation ?p }
+    FILTER (isNumeric(?p))
+
+    FILTER (langMatches(lang(?n), "en"))
+    }`;
+
     return (
       client
-        .query(
-          SPARQL`
-          SELECT *
-          WHERE {
-          ?x a dbo:Country.
-          ?x rdfs:label ${countryName}@en.
-          ?x rdfs:label ?n.
-          ?x dbo:thumbnail ?t.
-
-          values ?hasPopulation { dbo:populationTotal dbp:populationCensus }
-          OPTIONAL { ?x ?hasPopulation ?p }
-          FILTER (isNumeric(?p))
-
-          FILTER (langMatches(lang(?n), "en"))
-          }
-           `
-        )
-        // make sure we have population
+        .query(query)
         .execute()
         // get the item we want
         .then(response => {
-          console.log(response, Date.now());
           let res = response.results.bindings[0];
           let newCountry = this.state.country;
           newCountry = {
@@ -68,7 +65,8 @@ class App extends Component {
             population: res.p.value,
             flag: res.t.value
           };
-          this.setState({ country: newCountry });
+
+          this.setState({ country: newCountry, queryText: query });
         })
         .catch(err => {
           let newCountry = this.state.country;
@@ -85,7 +83,7 @@ class App extends Component {
 
   render() {
     let countryData = this.state.country;
-    let populationTotal = countryData.population ? countryData.population : "0000000000";
+    let queryText = this.state.queryText;
     // no counry population data yet
 
     return (
@@ -97,7 +95,7 @@ class App extends Component {
         </div>
         <div className="row justify-content-center detail">
           <PopulationDetail country={countryData} />
-          <QueryDetail country={countryData} />
+          <QueryDetail queryText={queryText} />
         </div>
         <Footer />
       </div>

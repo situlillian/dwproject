@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import d3 from "d3";
-import topojson from "topojson";
 import Datamap from "datamaps";
 
 class WorldMapContainer extends Component {
@@ -22,7 +20,6 @@ class WorldMapContainer extends Component {
 
   loadmap() {
     const onCountryClick = this.props.onCountryClick;
-    let countryPopulation = this.props.population;
 
     let datamapcontainer = new Datamap({
       element: document.getElementById("datamapcontainer"),
@@ -35,7 +32,6 @@ class WorldMapContainer extends Component {
       done: function(datamap) {
         datamap.svg.selectAll(".datamaps-subunit").on("click", function(geography) {
           let country = geography.properties.name;
-          console.log(country);
           if (country == "United States of America") {
             onCountryClick("United States"); // need to find a better solution; only edge case right now
           } else {
