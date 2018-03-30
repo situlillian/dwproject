@@ -3,6 +3,34 @@ font-family: 'Yeseva One', cursive;
 font-family: 'Merriweather', serif;
 font-family: 'Merriweather Sans', sans-serif; */
 
+.popTotalHeader {
+  font-family: "Yeseva One", cursive;
+  font-weight: bold;
+  font-size: 1em;
+  color: #f2d653;
+  border: 1px solid black;
+  padding: 0.5%;
+  display: inline-block;
+  width: 15em;
+}
+
+.instructions {
+  display: inline-block;
+  padding: 1%;
+}
+
+.detailsScrollDown {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  padding: 0.3%;
+  font-weight: bold;
+  z-index: 2000;
+}
+
+.flag {
+  width: 200px;
+}
+
 body {
   margin: 0;
   background-color: #fff;
@@ -34,7 +62,8 @@ h2,
 h3,
 h4 {
   font-family: "Merriweather", serif;
-  text-decoration: underline;
+  text-transform: uppercase;
+  border-bottom: 1px solid grey;
 }
 
 code {
@@ -107,14 +136,14 @@ code {
 }
 
 #datamapcontainer {
-  height: 50vh;
+  height: 40vh;
   z-index: 100;
   margin-bottom: -10em;
   margin-top: -3em;
 }
 
 #usamapcontainer {
-  margin-top: -7em;
+  margin-top: -10em;
   margin-bottom: -3em;
   height: 20vh;
   z-index: 100;

@@ -6,11 +6,7 @@ import Datamap from "datamaps";
 class WorldMapContainer extends Component {
   constructor() {
     super();
-    this.state = {
-      data: {
-        USA: { fillKey: "clicked" }
-      }
-    };
+    this.state = {};
 
     this.loadmap = this.loadmap.bind(this);
   }
@@ -25,6 +21,7 @@ class WorldMapContainer extends Component {
   loadmap() {
     const onCountryClick = this.props.onCountryClick;
     let clickedCountries = this.state.data;
+    let countryPopulation = this.props.population;
     let datamapcontainer = new Datamap({
       element: document.getElementById("datamapcontainer"),
       scope: "world",
@@ -61,7 +58,10 @@ class WorldMapContainer extends Component {
         highlightFillColor: "#607d8b",
         highlightBorderColor: "#000000",
         highlightBorderWidth: 1,
-        highlightBorderOpacity: 1
+        highlightBorderOpacity: 1,
+        popupTemplate: function(geography, data) {
+          return `<div class="hoverinfo"> ${geography.properties.name}`;
+        }
       }
     });
   }

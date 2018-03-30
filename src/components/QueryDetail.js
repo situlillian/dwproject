@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class QueryDetail extends Component {
   render() {
+    let country = this.props.country;
     return (
       <div className="detailBox">
         <h2>SPARQL Query</h2>
@@ -9,7 +10,7 @@ class QueryDetail extends Component {
           SELECT *<br />
           WHERE &#123; <br />
           ?x a dbo:Country.<br />
-          ?x rdfs:label <span className="queryResultText">{this.props.country}</span>.<br />
+          ?x rdfs:label <span className="queryResultText">{country.name}</span>.<br />
           ?x rdfs:label ?n.<br />
           <br />
           values ?hasPopulation &#123;<br />
