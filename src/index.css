@@ -31,11 +31,22 @@ h3,
 h4 {
   font-family: "Merriweather", serif;
   border-bottom: 1px solid grey;
+  margin-bottom: 1em;
 }
 
 code {
   font-family: monospace;
-  font-size: 120%;
+  font-size: 1.2em;
+  color: #000;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+a {
+  color: #a0b84d;
+  text-decoration: none;
 }
 
 .header {
@@ -43,23 +54,50 @@ code {
   background-color: #fdf8e7;
 }
 
+.logoHeader {
+  padding: 2em;
+  font-family: "Merriweather", serif;
+}
+
+.logoBeta {
+  color: #e16644;
+  font-family: "Merriweather Sans";
+  margin-left: 1em;
+  font-weight: bold;
+}
+
+.headerCTA {
+  font-size: 1.9em;
+  color: #e16644;
+  font-family: "Merriweather Sans";
+}
+
+.ctaBtn {
+  background-color: #a0b84d;
+  color: #fff;
+  font-size: 1.4em;
+  padding: 0.6em 2.1em;
+  border-radius: 1%;
+  margin-top: 1em;
+}
+
 .bgMap {
   width: inherit;
   margin-right: 3em;
 }
-.instructions {
+
+.chevrondown {
+  height: 1.5em;
+  margin: 1em;
 }
 
 .logo {
-  height: 4em;
+  height: 5em;
   margin-right: 1em;
 }
 
-.leftAlign {
-  text-align: left;
-}
-.rightAlign {
-  text-align: right;
+.main {
+  padding: 1em 0 0 0;
 }
 
 .detail {
@@ -78,24 +116,22 @@ code {
 }
 
 .queryResultText {
-  color: #f2d653;
+  color: #e16644;
   font-weight: bold;
-}
-
-.detailsScrollDown {
-  font-size: 2em;
-  text-transform: uppercase;
-  padding: 1%;
-  z-index: 2000;
 }
 
 .flag {
   height: 100px;
 }
 
+.footer {
+  padding: 2em;
+  font-family: "Merriweather", serif;
+}
+
 #datamapcontainer {
   height: 30vh;
   z-index: 100;
-  margin-bottom: -10em;
+  margin-bottom: -15em;
   margin-top: -10em;
 }

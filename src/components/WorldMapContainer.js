@@ -30,7 +30,7 @@ class WorldMapContainer extends Component {
       responsive: true,
       fills: {
         defaultFill: "#eceff1",
-        clicked: "#F1E7B7"
+        clicked: "#f2d653"
       },
       done: function(datamap) {
         datamap.svg.selectAll(".datamaps-subunit").on("click", function(geography) {
@@ -70,7 +70,7 @@ class WorldMapContainer extends Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-9" id="datamapcontainer" />
+        <div className="col-10" id="datamapcontainer" />
       </div>
     );
   }

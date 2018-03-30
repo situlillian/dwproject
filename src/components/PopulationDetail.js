@@ -4,7 +4,7 @@ import NumericLabel from "react-pretty-numbers";
 class PopulationDetail extends Component {
   render() {
     let country = this.props.country;
-    let headerText = country.name ? country.name : "Country";
+    let headerText = country.name ? country.name : "Select a Country";
     const option = {
       justification: "C",
       commafy: true

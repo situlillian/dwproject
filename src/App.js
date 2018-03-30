@@ -92,7 +92,7 @@ class App extends Component {
       <div className="App container-fluid">
         <Header handleScrollToElement={this.handleScrollToElement} />
         <div className="main">
-          <p ref="details">To get started, click on a country to display population information.</p>
+          <p ref="details">To get started, click on a country to obtain population information.</p>
           <WorldMapContainer onCountryClick={this.fetchPopulations} country={countryData} />
         </div>
         <div className="row justify-content-center detail">
